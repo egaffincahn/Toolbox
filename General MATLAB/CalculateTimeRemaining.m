@@ -5,7 +5,7 @@
 % reset each iteration.
 % 
 % Usage:
-%   t = CalculateTimeRemaining(n, N)
+%   t = CalculateTimeRemaining(n, N [, str])
 % 
 % EG Gaffin-Cahn
 % 4/2015
