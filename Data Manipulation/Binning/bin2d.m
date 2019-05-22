@@ -6,11 +6,17 @@ if nargin < 3 && ismatrix(x) && ~isvector(x) && length(size(x))==2 && any(size(x
     y = x(:,2);
     x = x(:,1);
 end
-if nargin < 4
-    xedge = linspace(min(x), max(x), 10);
+if nargin < 4 || isempty(xedge)
+    xedge = 10;
 end
-if nargin < 5
-    yedge = linspace(min(y), max(y), 10);
+if isscalar(xedge)
+    xedge = linspace(min(x), max(x), xedge);
+end
+if nargin < 5 || isempty(yedge)
+    yedge = 10;
+end
+if isscalar(yedge)
+    yedge = linspace(min(y), max(y), yedge);
 end
 if nargin < 6
     fun = @nanmean;
