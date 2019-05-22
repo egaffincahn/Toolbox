@@ -6,6 +6,9 @@ if nargin < 3 && ismatrix(x) && ~isvector(x) && length(size(x))==2 && any(size(x
     y = x(:,2);
     x = x(:,1);
 end
+if isscalar(z)
+    z = z * ones(size(x));
+end
 if nargin < 4 || isempty(xedge)
     xedge = 10;
 end
