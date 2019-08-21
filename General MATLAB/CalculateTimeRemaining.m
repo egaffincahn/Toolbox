@@ -5,21 +5,25 @@
 % reset each iteration.
 % 
 % Usage:
-%   t = CalculateTimeRemaining(n, N [, str])
+%   t = CalculateTimeRemaining(n, N [, str] [,tt])
 % 
 % EG Gaffin-Cahn
 % 4/2015
 % Updated to add string time 3/2017
-% Updated to create PrintTimeRemaining as separate function 8/2019
+% Updated to create PrintTimeRemaining as separate function; tt 8/2019
 % 
 
-function t = CalculateTimeRemaining(n, N, str)
+function t = CalculateTimeRemaining(n, N, str, tt)
 
-if nargin < 3
+if nargin < 3 || isempty(str)
     str = false;
 end
+if nargin < 4 || isempty(tt)
+    dt = toc; % elapsed time from last tic
+else
+    dt = toc(tt); % elapsed time since tic saved in tt
+end
 
-dt = toc; % elapsed time
 T = dt * N / n; % total time
 rt = T - dt; % remaining time
 
