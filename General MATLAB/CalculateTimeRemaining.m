@@ -10,26 +10,17 @@
 % EG Gaffin-Cahn
 % 4/2015
 % Updated to add string time 3/2017
+% Updated to create PrintTimeRemaining as separate function 8/2019
+% 
 
 function t = CalculateTimeRemaining(n, N, str)
+
+if nargin < 3
+    str = false;
+end
 
 dt = toc; % elapsed time
 T = dt * N / n; % total time
 rt = T - dt; % remaining time
-t = [0 0 0]; % initialize output remaining time: [hours minutes seconds]
 
-hr = 3600;
-min = 60;
-
-if rt > hr % hours remaining
-    t(1) = floor(rt / hr);
-    rt = rt - hr*t(1);
-end
-if rt > min % minutes remaining
-    t(2) = floor(rt / min);
-    rt = rt - min*t(2);
-end
-t(3) = round(rt); % seconds remaining
-if nargin == 3 && str
-    t = sprintf('%d hours, %d minutes, %d seconds estimated remaining', t(1), t(2), t(3));
-end
+t = PrintTimeRemaining(rt, str);
